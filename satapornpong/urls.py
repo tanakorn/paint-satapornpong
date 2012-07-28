@@ -1,17 +1,19 @@
 from django.conf.urls import patterns, include, url
+from django.views.generic import ListView
+from painting.models import Brand
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
+chooseBrandView = ListView.as_view(model=Brand, context_object_name='brand_list', template_name='choose_brand.html')
+
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'satapornpong.views.home', name='home'),
-    # url(r'^satapornpong/', include('satapornpong.foo.urls')),
+  url(r'^$', chooseBrandView),
 
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+  # Uncomment the admin/doc line below to enable admin documentation:
+  # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    # Uncomment the next line to enable the admin:
-    url(r'^admin/', include(admin.site.urls)),
+  # Uncomment the next line to enable the admin:
+  url(r'^admin/', include(admin.site.urls)),
 )
