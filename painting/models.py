@@ -6,33 +6,33 @@ class Brand(models.Model):
   def __unicode__(self):
     return self.name
 
-class Category(models.Model):
+class Product(models.Model):
   brand = models.ForeignKey(Brand)
   name = models.CharField(max_length=32)
 
   def __unicode__(self):
     return self.brand.name + ' ' + self.name
 
-class SubCategory(models.Model):
-  category = models.ForeignKey(Category)
+class Function(models.Model):
+  product = models.ForeignKey(Product)
   name = models.CharField(max_length=32)
 
   def __unicode__(self):
-    return self.category.brand.name + ' ' + self.category.name + ' ' + self.name
+    return self.product.brand.name + ' ' + self.product.name + ' ' + self.name
 
 class Size(models.Model):
-  category = models.ForeignKey(Category)
+  function = models.ForeignKey(Function)
   value = models.CharField(max_length=32)
 
   def __unicode__(self):
-    return self.category.brand.name + ' ' + self.category.name + ' ' + self.value
+    return self.product.brand.name + ' ' + self.product.name + ' ' + self.value
 
 class Base(models.Model):
-  category = models.ForeignKey(Category)
+  function = models.ForeignKey(Function)
   name = models.CharField(max_length=16)
 
   def __unicode__(self):
-    return self.category.brand.name + ' ' + self.category.name + ' ' + self.name
+    return self.product.brand.name + ' ' + self.product.name + ' ' + self.name
 
 class Customer(models.Model):
   name = models.CharField(max_length=128)
@@ -41,7 +41,7 @@ class Customer(models.Model):
     return self.name
 
 class Sell(models.Model):
-  subCategory = models.ForeignKey(SubCategory)
+  function = models.ForeignKey(Function)
   size = models.ForeignKey(Size)
   base = models.ForeignKey(Base)
   code = models.CharField(max_length=8)

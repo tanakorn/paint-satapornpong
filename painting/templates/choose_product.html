@@ -3,16 +3,16 @@
 </head>
 <body>
   <table border="1">
-  {% for category in category_list %}
+  {% for product in product_list %}
     {% if not forloop.counter|divisibleby:2 %}
     <tr>
     {% endif %}
       <td> 
-        <a href="/{{ brand.id }}/{{ category.id }}">
-          {% if category.hasImage %}
-            <img src="{{ STATIC_URL }}category/{{ brand.name }}/{{ category.name }}.jpg" />
+        <a href="/{{ brand.id }}/{{ product.id }}">
+          {% if product.hasImage %}
+            <img src="{{ STATIC_URL }}product/{{ brand.name }}/{{ product.name }}.jpg" />
           {% else %}
-            <h1> {{ category.name }} </h1>
+            <h1> {{ product.name }} </h1>
           {% endif %}
         </a>
       </td>
