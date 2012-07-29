@@ -6,10 +6,8 @@ from painting.models import Brand
 from django.contrib import admin
 admin.autodiscover()
 
-chooseBrandView = ListView.as_view(model=Brand, context_object_name='brand_list', template_name='choose_brand.html')
-
 urlpatterns = patterns('',
-  url(r'^$', chooseBrandView),
+  url(r'^$', 'painting.views.chooseBrand'),
 
   # Uncomment the admin/doc line below to enable admin documentation:
   # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
