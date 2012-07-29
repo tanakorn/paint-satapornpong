@@ -1,0 +1,29 @@
+<html>
+<head>
+</head>
+<body>
+  <table border="1">
+  {% for brand in brand_list %}
+    {% if not forloop.counter|divisibleby:2 %}
+    <tr>
+    {% endif %}
+      <td> 
+        <a href="/{{ brand.id }}">
+          {% if brand.hasImage %}
+            <img src="{{ STATIC_URL }}brand/{{ brand.name }}.jpg" />
+          {% else %}
+            <h1> {{ brand.name }} </h1>
+          {% endif %}
+        </a>
+      </td>
+    {% if forloop.counter|divisibleby:2 %}
+    </tr>
+    {% endif %}
+  {% endfor %}
+  {% if not brand_list|length|divisibleby:2 %}
+      <td> </td>
+    </tr>
+  {% endif %}
+  </table>
+</body>
+</html>
