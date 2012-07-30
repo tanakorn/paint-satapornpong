@@ -1,0 +1,25 @@
+<html>
+<head>
+</head>
+<body>
+  <table border="1">
+  {% for function in function_list %}
+    {% if not forloop.counter|divisibleby:2 %}
+    <tr>
+    {% endif %}
+      <td> 
+        <a href="/sell/detail/{{ function.id }}">
+          <h1> {{ function.name }} </h1>
+        </a>
+      </td>
+    {% if forloop.counter|divisibleby:2 %}
+    </tr>
+    {% endif %}
+  {% endfor %}
+  {% if not function_list|length|divisibleby:2 %}
+      <td> </td>
+    </tr>
+  {% endif %}
+  </table>
+</body>
+</html>

@@ -9,6 +9,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
   url(r'^sell/brand/$', 'painting.views.chooseBrand'),
   url(r'^sell/product/(?P<brand_id>\d+)/$', 'painting.views.chooseProduct'),
+  url(r'^sell/function/(?P<product_id>\d+)/$', 'painting.views.chooseFunction'),
 
   # Uncomment the admin/doc line below to enable admin documentation:
   # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
