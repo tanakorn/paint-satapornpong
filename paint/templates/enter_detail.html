@@ -1,0 +1,77 @@
+<html>
+<head>
+  <script type="text/javascript">
+    function changeSize(size_id, size_value) {
+      document.getElementById("size").value = size_id;
+      document.getElementById("size_label").innerHTML = size_value;
+    }
+
+    function changeBase(base_id, base_value) {
+      document.getElementById("base").value = base_id;
+      document.getElementById("base_label").innerHTML = base_value;
+    }
+
+    function validate(evt) {
+      var theEvent = evt || window.event;
+      var key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode(key);
+      var regex = /[0-9]/;
+      if(!regex.test(key)) {
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+      }
+    }
+
+    function calculate() {
+      unit = document.getElementById("unit").value;
+      price = document.getElementById("price").value;
+      amount_price = unit * price;
+      document.getElementById("amount_price").innerHTML = "ราคารวม = " + amount_price;
+    }
+  </script>
+</head>
+<body>
+  <form>
+    <input type="hidden" id="size" value="" />
+    <input type="hidden" id="base" value="" />
+    <table border="1">
+      <tr>
+        <td>ขนาด</td>
+        <td>
+        {% for size in size_list %}
+          <input type="button" value="{{ size.value }}" onClick="changeSize({{ size.id }}, '{{ size.value }}')" />
+        {% endfor %}
+        </td>
+        <td> <span id="size_label"> </span> </td>
+      </tr>
+      <tr>
+        <td>Base</td>
+        <td>
+        {% for base in base_list %}
+          <input type="button" value="{{ base.name }}" onClick="changeBase({{ base.id }}, '{{ base.name }}')" />
+        {% endfor %}
+        </td>
+        <td> <span id="base_label"> </span> </td>
+      </tr>
+      <tr>
+        <td> เบอร์สี </td>
+        <td colspan="2"> <input type="text" id="code" /> </td>
+      </tr>
+      <tr>
+        <td> จำนวน </td>
+        <td> <input type="text" id="unit" onKeyPress="validate(event)" onKeyUp="calculate()" value="1" /> </td>
+        <td rowspan="2"> <span id="amount_price">  ราคารวม = 0 </span> </td>
+      </tr>
+      <tr>
+        <td> ราคา </td>
+        <td> <input type="text" id="price" onKeyPress="validate(event)" onKeyUp="calculate()" value="0"/> </td>
+      </tr>
+      <tr>
+        <td> ชื่อลูกค้า </td>
+        <td colspan="2"> 
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>
