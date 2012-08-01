@@ -1,4 +1,4 @@
-from painting.models import Brand, Product, Function, Size, Base, Customer, Sell
+from paint.models import Brand, Product, Function, Size, Base, Customer, Sell
 from django.contrib import admin
 
 admin.site.register(Brand)

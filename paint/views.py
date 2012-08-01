@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.conf import settings
 
-from painting.models import Brand, Product
+from paint.models import Brand, Product, Function, Size, Base
 
 import os.path
 
@@ -29,3 +29,9 @@ def chooseFunction(request, product_id):
   product = get_object_or_404(Product, id=product_id)
   allFunction = product.function_set.all()
   return render_to_response('choose_function.html', {'function_list': allFunction}, context_instance=RequestContext(request))
+
+def enterDetail(request, function_id):
+  function = get_object_or_404(Function, id=function_id)
+  allSize = function.size_set.all()
+  allBase = function.base_set.all()
+  return render_to_response('enter_detail.html', {'all_size': allSize, 'all_base': allBase}, context_instance=RequestContext(request))
