@@ -32,6 +32,6 @@ def chooseFunction(request, product_id):
 
 def enterDetail(request, function_id):
   function = get_object_or_404(Function, id=function_id)
-  allSize = function.size_set.all()
-  allBase = function.base_set.all()
-  return render_to_response('enter_detail.html', {'all_size': allSize, 'all_base': allBase}, context_instance=RequestContext(request))
+  allSize = function.sizes.all()
+  allBase = function.bases.all()
+  return render_to_response('enter_detail.html', {'size_list': allSize, 'base_list': allBase}, context_instance=RequestContext(request))
