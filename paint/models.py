@@ -7,17 +7,11 @@ class Brand(models.Model):
     return self.name
 
 class Product(models.Model):
-  brand = models.ForeignKey(Brand)
   name = models.CharField(max_length=32)
+  brand = models.ForeignKey(Brand)
 
   def __unicode__(self):
     return self.brand.name + ' ' + self.name
-
-class Function(models.Model):
-  name = models.CharField(max_length=32)
-
-  def __unicode__(self):
-    return self.name
 
 class Size(models.Model):
   value = models.CharField(max_length=32)
@@ -31,14 +25,14 @@ class Base(models.Model):
   def __unicode__(self):
     return self.name
 
-class Paint(models.Model):
+class Function(models.Model):
+  name = models.CharField(max_length=32)
   product = models.ForeignKey(Product)
-  function = models.ForeignKey(Function)
-  size = models.ForeignKey(Size)
-  base = models.ForeignKey(Base)
+  sizes = models.ManyToManyField(Size)
+  bases = models.ManyToManyField(Base)
 
   def __unicode__(self):
-    return self.product.brand.name + ' ' + self.product.name + ' ' + self.function.name + ' ' + self.size.value + ' ' + self.base.name
+    return self.name
 
 class Customer(models.Model):
   name = models.CharField(max_length=128)
@@ -47,10 +41,12 @@ class Customer(models.Model):
     return self.name
 
 class Sell(models.Model):
-  paint = models.ForeignKey(Paint)
+  function = models.ForeignKey(Function)
+  size = models.ForeignKey(Size)
+  base = models.ForeignKey(Base)
   code = models.CharField(max_length=16)
   unit = models.IntegerField()
   price = models.FloatField()
   customer = models.ForeignKey(Customer, null=True)
   note = models.TextField()
-  date = models.DateTimeField('Date')
+  date = models.DateTimeField()
