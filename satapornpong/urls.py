@@ -11,6 +11,7 @@ urlpatterns = patterns('',
   url(r'^sell/product/(?P<brand_id>\d+)/$', 'paint.views.chooseProduct'),
   url(r'^sell/function/(?P<product_id>\d+)/$', 'paint.views.chooseFunction'),
   url(r'^sell/detail/(?P<function_id>\d+)/$', 'paint.views.enterDetail'),
+  url(r'^sell/record/$', 'paint.views.record'),
 
   # Uncomment the admin/doc line below to enable admin documentation:
   # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
