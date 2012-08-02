@@ -34,19 +34,13 @@ class Function(models.Model):
   def __unicode__(self):
     return self.name
 
-class Customer(models.Model):
-  name = models.CharField(max_length=128)
-
-  def __unicode__(self):
-    return self.name
-
 class Sell(models.Model):
   function = models.ForeignKey(Function)
   size = models.ForeignKey(Size)
   base = models.ForeignKey(Base)
   code = models.CharField(max_length=16)
   unit = models.IntegerField()
-  price = models.FloatField()
-  customer = models.ForeignKey(Customer, null=True)
-  note = models.TextField()
-  date = models.DateTimeField()
+  price = models.IntegerField()
+  customer = models.CharField(max_length=32, null=True)
+  note = models.TextField(null=True)
+  date = models.DateField(auto_now_add=True)
