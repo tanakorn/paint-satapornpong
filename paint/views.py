@@ -9,6 +9,12 @@ from paint.models import Brand, Product, Function, Size, Base, Sell
 import os.path
 import datetime
 
+def index(request):
+  return render_to_response('index.html', {})
+
+def addSellRecord(request):
+  return HttpResponseRedirect(reverse('paint.views.chooseBrand'))
+
 def chooseBrand(request):
   allBrand = Brand.objects.all()
   for brand in allBrand:
@@ -54,3 +60,21 @@ def record(request):
   sell = Sell(function=function, size=size, base=base, code=code, unit=unit, price=price, customer=customer, note=note)
   sell.save()
   return HttpResponseRedirect(reverse('paint.views.chooseBrand'))
+
+def search(request):
+  pass
+
+def selectSearch(request):
+  pass
+
+def searchByDate(request):
+  pass
+
+def searchByCustomer(request):
+  pass
+
+def searchByBrand(request):
+  pass
+
+def searchByCode(request):
+  pass
