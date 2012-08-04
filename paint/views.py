@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, get_list_or_404, render_to_response
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
@@ -62,13 +62,21 @@ def record(request):
   return HttpResponseRedirect(reverse('paint.views.chooseBrand'))
 
 def search(request):
-  pass
+  return HttpResponseRedirect(reverse('paint.views.selectSearch'))
 
 def selectSearch(request):
-  pass
+  return render_to_response('search_select.html', {})
 
-def searchByDate(request):
-  pass
+def searchByDate(request, day=0, month=0, year=0):
+  if day == 0 or month == 0 or year == 0:
+    searchDate = datetime.date.today()
+  else:
+    searchDate = datetime.date(int(year), int(month), int(day))
+  sellRecords = Sell.objects.filter(date=searchDate)
+  oneday = datetime.timedelta(1)
+  previousDay = searchDate - oneday
+  nextDay = searchDate + oneday
+  return render_to_response('search_date.html', {'sell_record_list': sellRecords, 'date': searchDate, 'previous_day': previousDay, 'next_day': nextDay}, context_instance=RequestContext(request))
 
 def searchByCustomer(request):
   pass
