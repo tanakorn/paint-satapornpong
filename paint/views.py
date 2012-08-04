@@ -93,11 +93,38 @@ def searchByMonth(request, month=0, year=0):
   nextMonth['year'] = searchDate.year if searchDate.month != 12 else searchDate.year + 1
   return render_to_response('search_month.html', {'sell_record_list': sellRecords, 'date': searchDate, 'previous_month': previousMonth, 'next_month': nextMonth}, context_instance=RequestContext(request))
 
-def searchByCustomer(request):
-  pass
+def enterCustomer(request):
+  return render_to_response('enter_customer.html', {})
 
-def searchByBrand(request):
-  pass
+def searchByCustomer(request, customer, month=0, year=0):
+  if month == 0 or year == 0:
+    searchDate = datetime.date.today()
+  else:
+    searchDate = datetime.date(int(year), int(month), 1)
+  sellRecords = Sell.objects.filter(customer__startswith=customer, date__month=searchDate.month, date__year=searchDate.year)
+  sorted(sellRecords, key=lambda record: record.date)
+  previousMonth = {}
+  previousMonth['month'] = searchDate.month - 1 if searchDate.month != 1 else 12
+  previousMonth['year'] = searchDate.year if searchDate.month != 1 else searchDate.year - 1
+  nextMonth = {}
+  nextMonth['month'] = searchDate.month + 1 if searchDate.month != 12 else 1
+  nextMonth['year'] = searchDate.year if searchDate.month != 12 else searchDate.year + 1
+  return render_to_response('search_customer.html', {'customer': customer, 'sell_record_list': sellRecords, 'date': searchDate, 'previous_month': previousMonth, 'next_month': nextMonth}, context_instance=RequestContext(request))
 
-def searchByCode(request):
-  pass
+def enterCode(request):
+  return render_to_response('enter_code.html', {})
+
+def searchByCode(request, code, month=0, year=0):
+  if month == 0 or year == 0:
+    searchDate = datetime.date.today()
+  else:
+    searchDate = datetime.date(int(year), int(month), 1)
+  sellRecords = Sell.objects.filter(code__endswith=code, date__month=searchDate.month, date__year=searchDate.year)
+  sorted(sellRecords, key=lambda record: record.date)
+  previousMonth = {}
+  previousMonth['month'] = searchDate.month - 1 if searchDate.month != 1 else 12
+  previousMonth['year'] = searchDate.year if searchDate.month != 1 else searchDate.year - 1
+  nextMonth = {}
+  nextMonth['month'] = searchDate.month + 1 if searchDate.month != 12 else 1
+  nextMonth['year'] = searchDate.year if searchDate.month != 12 else searchDate.year + 1
+  return render_to_response('search_code.html', {'code': code, 'sell_record_list': sellRecords, 'date': searchDate, 'previous_month': previousMonth, 'next_month': nextMonth}, context_instance=RequestContext(request))

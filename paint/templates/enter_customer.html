@@ -1,0 +1,17 @@
+<html>
+<head>
+<script type="text/javascript">
+  function search() {
+    customer = document.getElementById("customer").value;
+    self.location = "/search/customer/" + customer + "/";
+  }
+</script>
+</head>
+<body>
+  <form>
+    ชื่อลูกค้า <br />
+    <input type="text" id="customer" /><br />
+    <input type="button" onClick="search()" value="ค้น" />
+  </form>
+</body>
+</html>

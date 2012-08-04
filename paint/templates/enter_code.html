@@ -1,0 +1,17 @@
+<html>
+<head>
+<script type="text/javascript">
+  function search() {
+    code = document.getElementById("code").value;
+    self.location = "/search/code/" + code + "/";
+  }
+</script>
+</head>
+<body>
+  <form>
+    เบอร์สี <br />
+    <input type="text" id="code" /><br />
+    <input type="button" onClick="search()" value="ค้น" />
+  </form>
+</body>
+</html>
