@@ -1,0 +1,43 @@
+<html>
+<head>
+</head>
+<body>
+<div>
+  ค้นตาม<br /><a href="/search/date/1/{{ date.month }}/{{ date.year }}/">วัน </a>เดือน<br />
+  <a href="/search/month/{{ previous_month.month }}/{{ previous_month.year }}/">เดือนที่แล้ว</a> <a href="/search/month/{{ next_month.month }}/{{ next_month.year }}/">เดือนต่อไป</a>
+</div>
+<table border="1">
+  <tr>
+    <th>วันที่</th>
+    <th>ผลิตภัณฑ์</th>
+    <th>การใช้งาน</th>
+    <th>เบอร์สี</th>
+    <th>สีเบส</th>
+    <th>ขนาด</th>
+    <th>ราคา</th>
+    <th>จำนวน</th>
+    <th>ชื่อลูกค้า</th>
+    <th>หมายเหตุ</th>
+  </tr>
+  {% for sell_record in sell_record_list %}
+    {% ifchanged sell_record.date %}
+  <tr>
+    <th colspan="10">{{ sell_record.date }}</th>
+  </tr>
+    {% endifchanged %}
+  <tr>
+    <td>{{ sell_record.date }}</td>
+    <td>{{ sell_record.function.product.brand.name }} {{ sell_record.product.name }}</td>
+    <td>{{ sell_record.function.name }}</td>
+    <td>{{ sell_record.code }}</td>
+    <td>{{ sell_record.base.name }}</td>
+    <td>{{ sell_record.size.value }}</td>
+    <td>{{ sell_record.price }}</td>
+    <td>{{ sell_record.unit }}</td>
+    <td>{{ sell_record.customer }}</td>
+    <td>{{ sell_record.note }}</td>
+  </tr>
+  {% endfor %}
+</table>
+</body>
+</html>

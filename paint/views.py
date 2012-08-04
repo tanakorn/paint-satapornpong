@@ -78,6 +78,21 @@ def searchByDate(request, day=0, month=0, year=0):
   nextDay = searchDate + oneday
   return render_to_response('search_date.html', {'sell_record_list': sellRecords, 'date': searchDate, 'previous_day': previousDay, 'next_day': nextDay}, context_instance=RequestContext(request))
 
+def searchByMonth(request, month=0, year=0):
+  if month == 0 or year == 0:
+    searchDate = datetime.date.today()
+  else:
+    searchDate = datetime.date(int(year), int(month), 1)
+  sellRecords = Sell.objects.filter(date__month=searchDate.month, date__year=searchDate.year)
+  sorted(sellRecords, key=lambda record: record.date)
+  previousMonth = {}
+  previousMonth['month'] = searchDate.month - 1 if searchDate.month != 1 else 12
+  previousMonth['year'] = searchDate.year if searchDate.month != 1 else searchDate.year - 1
+  nextMonth = {}
+  nextMonth['month'] = searchDate.month + 1 if searchDate.month != 12 else 1
+  nextMonth['year'] = searchDate.year if searchDate.month != 12 else searchDate.year + 1
+  return render_to_response('search_month.html', {'sell_record_list': sellRecords, 'date': searchDate, 'previous_month': previousMonth, 'next_month': nextMonth}, context_instance=RequestContext(request))
+
 def searchByCustomer(request):
   pass
 
