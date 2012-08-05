@@ -1,29 +1,49 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="th" xml:lang="th">
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+  body {
+    font-size: 400%;
+    background-color: #cccccc;
+  }
+  div.main {
+    text-align: center;
+  }
+  table.brand {
+    width: 600px;
+    margin: auto;
+  }
+  td.brand {
+    width: 50%;
+  }
+</style>
 </head>
 <body>
-  <table border="1">
-  {% for brand in brand_list %}
-    {% if not forloop.counter|divisibleby:2 %}
-    <tr>
+  <div class="main">
+    <table class="brand" border="1">
+    {% for brand in brand_list %}
+      {% if not forloop.counter|divisibleby:2 %}
+      <tr>
+      {% endif %}
+        <td class="brand"> 
+          <a href="/sell/product/{{ brand.id }}">
+            {% if brand.hasImage %}
+              <img src="{{ STATIC_URL }}brand/{{ brand.name }}.jpg" />
+            {% else %}
+              <h1> {{ brand.name }} </h1>
+            {% endif %}
+          </a>
+        </td>
+      {% if forloop.counter|divisibleby:2 %}
+      </tr>
+      {% endif %}
+    {% endfor %}
+    {% if not brand_list|length|divisibleby:2 %}
+        <td class="brand"> </td>
+      </tr>
     {% endif %}
-      <td> 
-        <a href="/sell/product/{{ brand.id }}">
-          {% if brand.hasImage %}
-            <img src="{{ STATIC_URL }}brand/{{ brand.name }}.jpg" />
-          {% else %}
-            <h1> {{ brand.name }} </h1>
-          {% endif %}
-        </a>
-      </td>
-    {% if forloop.counter|divisibleby:2 %}
-    </tr>
-    {% endif %}
-  {% endfor %}
-  {% if not brand_list|length|divisibleby:2 %}
-      <td> </td>
-    </tr>
-  {% endif %}
-  </table>
+    </table>
+  </div>
 </body>
 </html>
