@@ -10,28 +10,28 @@
   div.main {
     text-align: center;
   }
-  table.brand {
+  table.main {
     width: 600px;
     margin: auto;
   }
-  td.brand {
+  td.main {
     width: 50%;
   }
 </style>
 </head>
 <body>
   <div class="main">
-    <table class="brand" border="1">
+    <table class="main">
     {% for brand in brand_list %}
       {% if not forloop.counter|divisibleby:2 %}
       <tr>
       {% endif %}
-        <td class="brand"> 
+        <td class="main"> 
           <a href="/sell/product/{{ brand.id }}">
             {% if brand.hasImage %}
               <img src="{{ STATIC_URL }}brand/{{ brand.name }}.jpg" />
             {% else %}
-              <h1> {{ brand.name }} </h1>
+              {{ brand.name }}
             {% endif %}
           </a>
         </td>
@@ -40,7 +40,7 @@
       {% endif %}
     {% endfor %}
     {% if not brand_list|length|divisibleby:2 %}
-        <td class="brand"> </td>
+        <td class="main"> </td>
       </tr>
     {% endif %}
     </table>
