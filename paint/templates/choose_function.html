@@ -1,15 +1,33 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="th" xml:lang="th">
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+  body {
+    font-size: 400%;
+    background-color: #cccccc;
+  }
+  div.main {
+    text-align: center;
+  }
+  table.main {
+    width: 600px;
+    margin: auto;
+  }
+  td.main {
+    width: 50%;
+  }
+</style>
 </head>
 <body>
-  <table border="1">
+  <table class="main">
   {% for function in function_list %}
     {% if not forloop.counter|divisibleby:2 %}
     <tr>
     {% endif %}
-      <td> 
+      <td class="main"> 
         <a href="/sell/detail/{{ function.id }}">
-          <h1> {{ function.name }} </h1>
+          {{ function.name }}
         </a>
       </td>
     {% if forloop.counter|divisibleby:2 %}
@@ -17,7 +35,7 @@
     {% endif %}
   {% endfor %}
   {% if not function_list|length|divisibleby:2 %}
-      <td> </td>
+      <td class="main"> </td>
     </tr>
   {% endif %}
   </table>
