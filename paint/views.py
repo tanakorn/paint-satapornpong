@@ -32,18 +32,18 @@ def chooseProduct(request, brand_id):
       product.hasImage = True
     else:
       product.hasImage = False
-  return render_to_response('choose_product.html', {'product_list': allProduct, 'brand': brand }, context_instance=RequestContext(request))
+  return render_to_response('choose_product.html', {'brand_name': brand.name, 'product_list': allProduct, 'brand': brand }, context_instance=RequestContext(request))
 
 def chooseFunction(request, product_id):
   product = get_object_or_404(Product, id=product_id)
   allFunction = product.function_set.all()
-  return render_to_response('choose_function.html', {'function_list': allFunction}, context_instance=RequestContext(request))
+  return render_to_response('choose_function.html', {'brand_name': product.brand.name, 'product_name': product.name, 'function_list': allFunction}, context_instance=RequestContext(request))
 
 def enterDetail(request, function_id):
   function = get_object_or_404(Function, id=function_id)
   allSize = function.sizes.all()
   allBase = function.bases.all()
-  return render_to_response('enter_detail.html', { 'function_id': function_id, 'size_list': allSize, 'base_list': allBase}, context_instance=RequestContext(request))
+  return render_to_response('enter_detail.html', {'function_id': function_id, 'size_list': allSize, 'base_list': allBase}, context_instance=RequestContext(request))
 
 def record(request):
   function_id = request.POST['function_id']

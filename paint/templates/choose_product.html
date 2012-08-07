@@ -21,6 +21,7 @@
 </head>
 <body>
   <div class="main">
+    {{ brand_name }} <br />
     <table class="main">
     {% for product in product_list %}
       {% if not forloop.counter|divisibleby:2 %}
