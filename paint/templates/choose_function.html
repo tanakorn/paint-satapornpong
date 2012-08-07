@@ -20,24 +20,26 @@
 </style>
 </head>
 <body>
-  <table class="main">
-  {% for function in function_list %}
-    {% if not forloop.counter|divisibleby:2 %}
-    <tr>
+  <div class="main">
+    <table class="main">
+    {% for function in function_list %}
+      {% if not forloop.counter|divisibleby:2 %}
+      <tr>
+      {% endif %}
+        <td class="main"> 
+          <a href="/sell/detail/{{ function.id }}">
+            {{ function.name }}
+          </a>
+        </td>
+      {% if forloop.counter|divisibleby:2 %}
+      </tr>
+      {% endif %}
+    {% endfor %}
+    {% if not function_list|length|divisibleby:2 %}
+        <td class="main"> </td>
+      </tr>
     {% endif %}
-      <td class="main"> 
-        <a href="/sell/detail/{{ function.id }}">
-          {{ function.name }}
-        </a>
-      </td>
-    {% if forloop.counter|divisibleby:2 %}
-    </tr>
-    {% endif %}
-  {% endfor %}
-  {% if not function_list|length|divisibleby:2 %}
-      <td class="main"> </td>
-    </tr>
-  {% endif %}
-  </table>
+    </table>
+  </div>
 </body>
 </html>
