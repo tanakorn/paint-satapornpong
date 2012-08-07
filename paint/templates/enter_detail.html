@@ -1,5 +1,49 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="th" xml:lang="th">
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css">
+    body {
+      font-size: 400%;
+      background-color: #cccccc;
+    }
+    table.main {
+      width: 100%;
+      margin: auto;
+    }
+    td.label {
+      width: 25%;
+    }
+    td.input {
+      width: 50%;
+    }
+    td.output {
+      width: 25%;
+    }
+    input {
+      font-size: 100%;
+      width: 100%;
+      margin-right: 2%; 
+    }
+    input.button {
+      font-size: 70%;
+      border-color: black;
+      background-color: red;
+      width: 28%;
+    }
+    input.submit {
+      font-size: 100%;
+      border-color: black;
+      background-color: red;
+      width: 40%;
+      margin-left: 30%;
+      margin-right: 30%;
+    }
+    textarea {
+      font-size: 100%;
+      width: 100%;
+    }
+  </style>
   <script type="text/javascript">
     function changeSize(size_id, size_value) {
       document.getElementById("size_id").value = size_id;
@@ -54,48 +98,53 @@
     <input type="hidden" id="function_id" name="function_id" value="{{ function_id }}" />
     <input type="hidden" id="size_id" name="size_id" value="" />
     <input type="hidden" id="base_id" name="base_id" value="" />
-    <table border="1">
+    <table class="main" border="1">
       <tr>
-        <td>ขนาด</td>
-        <td>
+        <td class="label">ขนาด</td>
+        <td class="input">
         {% for size in size_list %}
-          <input type="button" value="{{ size.value }}" onClick="changeSize({{ size.id }}, '{{ size.value }}')" />
+          <input class="button" type="button" value="{{ size.value }}" onClick="changeSize({{ size.id }}, '{{ size.value }}')" />
+          {% if forloop.counter|divisibleby:3 %}
+          <br />
+          {% endif %}
         {% endfor %}
         </td>
-        <td> <span id="size_label"> </span> </td>
+        <td class="output"> <span id="size_label"> </span> </td>
       </tr>
       <tr>
-        <td>Base</td>
-        <td>
+        <td class="label">Base</td>
+        <td class="input">
         {% for base in base_list %}
-          <input type="button" value="{{ base.name }}" onClick="changeBase({{ base.id }}, '{{ base.name }}')" />
+          <input class="button" type="button" value="{{ base.name }}" onClick="changeBase({{ base.id }}, '{{ base.name }}')" />
         {% endfor %}
         </td>
-        <td> <span id="base_label"> </span> </td>
+        <td class="output"> <span id="base_label"> </span> </td>
       </tr>
       <tr>
-        <td> เบอร์สี </td>
-        <td colspan="2"> <input type="text" id="code" name="code" /> </td>
+        <td class="label"> เบอร์สี </td>
+        <td class="input" colspan="2"> <input type="text" id="code" name="code" /> </td>
       </tr>
       <tr>
-        <td> จำนวน </td>
-        <td> <input type="text" id="unit" name="unit" onKeyPress="validate(event)" onChange="calculate()" value="1" /> </td>
-        <td rowspan="2"> ราคารวม = <span id="amount_price">0</span> </td>
+        <td class="label"> จำนวน </td>
+        <td class="input"> <input type="text" id="unit" name="unit" onKeyPress="validate(event)" onChange="calculate()" value="1" /> </td>
+        <td class="output" rowspan="2"><span id="amount_price">0</span> บาท</td>
       </tr>
       <tr>
-        <td> ราคา </td>
-        <td> <input type="text" id="price" name="price" onKeyPress="validate(event)" onChange="calculate()" value="0"/> </td>
+        <td class="label"> ราคา </td>
+        <td class="input"> <input type="text" id="price" name="price" onKeyPress="validate(event)" onChange="calculate()" value="0"/> </td>
       </tr>
       <tr>
-        <td> ชื่อลูกค้า </td>
-        <td colspan="2"> <input type="text" id="customer" name="customer" /> </td>
+        <td class="label"> ชื่อลูกค้า </td>
+        <td class="input" colspan="2"> <input type="text" id="customer" name="customer" /> </td>
       </tr>
       <tr>
-        <td> หมายเหตุ </td>
-        <td colspan="2"> <textarea id="note" name="note" cols="40" rows="4"></textarea> </td>
+        <td class="label"> หมายเหตุ </td>
+        <td class="input" colspan="2"> <textarea id="note" name="note" cols="40" rows="4"></textarea> </td>
       </tr>
     </table>
-    <input type="submit" value="บันทึก" />
+    <br />
+    <input class="submit" type="submit" value="บันทึก" />
+    <br />
   </form>
 </body>
 </html>
