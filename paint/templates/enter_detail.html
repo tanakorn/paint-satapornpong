@@ -93,6 +93,16 @@
         alert("ยังไม่ได้ใส่เบอร์สี");
         return false;
       }
+      unit = document.getElementById("unit").value;
+      if(unit == null || unit == "") {
+        alert("ยังไม่ได้ใส่จำนวน");
+        return false;
+      }
+      price = document.getElementById("price").value;
+      if(price == null || price == "") {
+        alert("ยังไม่ได้ใส่ราคา");
+        return false;
+      }
     }
   </script>
 </head>
