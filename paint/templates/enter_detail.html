@@ -6,10 +6,12 @@
     body {
       font-size: 400%;
       background-color: #cccccc;
+      text-align: center;
     }
     table.main {
       width: 100%;
       margin: auto;
+      text-align: left;
     }
     td.label {
       width: 25%;
@@ -22,14 +24,14 @@
     }
     input {
       font-size: 100%;
-      width: 100%;
+      width: 80%;
       margin-right: 2%; 
     }
     input.button {
       font-size: 70%;
       border-color: black;
       background-color: red;
-      width: 28%;
+      width: 48%;
     }
     input.submit {
       font-size: 100%;
@@ -95,6 +97,7 @@
 <body>
   <form action="/sell/record/" method="post" onSubmit="return validateForm()">
     {% csrf_token %}
+    {{ brand_name }} {{ product_name }} {{ function_name }}
     <input type="hidden" id="function_id" name="function_id" value="{{ function_id }}" />
     <input type="hidden" id="size_id" name="size_id" value="" />
     <input type="hidden" id="base_id" name="base_id" value="" />
@@ -139,7 +142,7 @@
       </tr>
       <tr>
         <td class="label"> หมายเหตุ </td>
-        <td class="input" colspan="2"> <textarea id="note" name="note" cols="40" rows="4"></textarea> </td>
+        <td class="input" colspan="2"> <textarea id="note" name="note" cols="40" rows="3"></textarea> </td>
       </tr>
     </table>
     <br />

@@ -43,7 +43,7 @@ def enterDetail(request, function_id):
   function = get_object_or_404(Function, id=function_id)
   allSize = function.sizes.all()
   allBase = function.bases.all()
-  return render_to_response('enter_detail.html', {'function_id': function_id, 'size_list': allSize, 'base_list': allBase}, context_instance=RequestContext(request))
+  return render_to_response('enter_detail.html', {'brand_name': function.product.brand.name, 'product_name': function.product.name, 'function_name': function.name, 'function_id': function_id, 'size_list': allSize, 'base_list': allBase}, context_instance=RequestContext(request))
 
 def record(request):
   function_id = request.POST['function_id']
