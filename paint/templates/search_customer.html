@@ -1,9 +1,22 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="th" xml:lang="th">
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css">
+    body {
+      font-size: 200%;
+      background-color: #cccccc;
+      text-align: center;
+    }
+    table {
+      margin: auto;
+    }
+  </style>
 </head>
+<html>
 <body>
 <div>
-  <a href="/search/customer/{{ customer }}/{{ previous_month.month }}/{{ previous_month.year }}/">เดือนที่แล้ว</a> <a href="/search/customer/{{ customer }}/{{ next_month.month }}/{{ next_month.year }}/">เดือนต่อไป</a>
+  <a href="/search/customer/{{ customer }}/{{ previous_month.month }}/{{ previous_month.year }}/">&lt;&lt; เดือนที่แล้ว</a> <a href="/search/customer/{{ customer }}/{{ next_month.month }}/{{ next_month.year }}/">เดือนต่อไป &gt;&gt;</a>
 </div>
 <table border="1">
   <tr>
@@ -26,15 +39,23 @@
     {% endifchanged %}
   <tr>
     <td>{{ sell_record.date }}</td>
-    <td>{{ sell_record.function.product.brand.name }} {{ sell_record.product.name }}</td>
+    <td>{{ sell_record.function.product.brand.name }} {{ sell_record.function.product.name }}</td>
     <td>{{ sell_record.function.name }}</td>
     <td>{{ sell_record.code }}</td>
     <td>{{ sell_record.base.name }}</td>
     <td>{{ sell_record.size.value }}</td>
     <td>{{ sell_record.price }}</td>
     <td>{{ sell_record.unit }}</td>
+    {% if sell_record.customer %}
     <td>{{ sell_record.customer }}</td>
+    {% else %}
+    <td />
+    {% endif %}
+    {% if sell_record.note %}
     <td>{{ sell_record.note }}</td>
+    {% else %}
+    <td />
+    {% endif %}
   </tr>
   {% endfor %}
 </table>

@@ -1,17 +1,38 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="th" xml:lang="th">
 <head>
-<script type="text/javascript">
-  function search() {
-    code = document.getElementById("code").value;
-    self.location = "/search/code/" + code + "/";
-  }
-</script>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css">
+    body {
+      font-size: 400%;
+      background-color: #cccccc;
+      text-align: center;
+    }
+    input {
+      font-size: 100%;
+      width: 80%;
+    }
+    input.button {
+      font-size: 100%;
+      border-color: black;
+      background-color: red;
+      width: 40%;
+      margin-left: 30%;
+      margin-right: 30%;
+    }
+  </style>
+  <script type="text/javascript">
+    function search() {
+      code = document.getElementById("code").value;
+      self.location = "/search/code/" + code + "/";
+    }
+  </script>
 </head>
 <body>
   <form>
-    เบอร์สี <br />
-    <input type="text" id="code" /><br />
-    <input type="button" onClick="search()" value="ค้น" />
+    เบอร์สี <br /><br />
+    <input type="text" id="code" /><br /><br />
+    <input class="button" type="button" onClick="search()" value="ค้น" />
   </form>
 </body>
 </html>
