@@ -35,11 +35,7 @@
       {% endif %}
         <td class="main"> 
           <a href="/sell/product/{{ brand.id }}">
-            {% if brand.hasImage %}
-              <img src="{{ STATIC_URL }}brand/{{ brand.name }}.jpg" />
-            {% else %}
-              {{ brand.name }}
-            {% endif %}
+            {{ brand.name }}
           </a>
         </td>
       {% if forloop.counter|divisibleby:2 %}

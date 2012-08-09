@@ -17,21 +17,11 @@ def addSellRecord(request):
 
 def chooseBrand(request):
   allBrand = Brand.objects.all()
-  for brand in allBrand:
-    if os.path.isfile('%s/brand/%s.jpg' % (settings.STATIC_ROOT, brand.name)):
-      brand.hasImage = True
-    else:
-      brand.hasImage = False
   return render_to_response('choose_brand.html', {'brand_list': allBrand}, context_instance=RequestContext(request))
 
 def chooseProduct(request, brand_id):
   brand = get_object_or_404(Brand, id=brand_id)
   allProduct = brand.product_set.all()
-  for product in allProduct:
-    if os.path.isfile('%s/product/%s/%s.jpg' % (settings.STATIC_ROOT, brand.name, product.name)):
-      product.hasImage = True
-    else:
-      product.hasImage = False
   return render_to_response('choose_product.html', {'brand_name': brand.name, 'product_list': allProduct, 'brand': brand }, context_instance=RequestContext(request))
 
 def chooseFunction(request, product_id):
