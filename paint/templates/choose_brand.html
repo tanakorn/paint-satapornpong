@@ -7,6 +7,9 @@
     font-size: 400%;
     background-color: #cccccc;
   }
+  span.home {
+    font-size: 30%;
+  }
   div.main {
     text-align: center;
   }
@@ -21,6 +24,7 @@
 </head>
 <body>
   <div class="main">
+    <span class="home"><a href="/">กลับไปหน้าแรก</a></span><br />
     <table class="main">
     {% for brand in brand_list %}
       {% if not forloop.counter|divisibleby:2 %}

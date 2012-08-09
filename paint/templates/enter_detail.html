@@ -8,6 +8,9 @@
       background-color: #cccccc;
       text-align: center;
     }
+    span.home {
+      font-size: 30%;
+    }
     table.main {
       width: 100%;
       margin: auto;
@@ -97,6 +100,7 @@
 <body>
   <form action="/sell/record/" method="post" onSubmit="return validateForm()">
     {% csrf_token %}
+    <span class="home"><a href="/">กลับไปหน้าแรก</a></span><br />
     {{ brand_name }} {{ product_name }} {{ function_name }}
     <input type="hidden" id="function_id" name="function_id" value="{{ function_id }}" />
     <input type="hidden" id="size_id" name="size_id" value="" />
