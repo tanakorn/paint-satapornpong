@@ -10,7 +10,7 @@ import os.path
 import datetime
 
 def index(request):
-  return render_to_response('index.html', {})
+  return render_to_response('index.html', {}, context_instance=RequestContext(request))
 
 def addSellRecord(request):
   return HttpResponseRedirect(reverse('paint.views.chooseBrand'))

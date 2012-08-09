@@ -1,0 +1,41 @@
+body {
+  background-color: #cccccc;
+}
+
+div.head {
+  font-size: 350%;
+  text-align: center;
+}
+
+div.main {
+  font-size: 300%;
+  text-align: center;
+}
+
+div.foot {
+  font-size: 80%;
+  text-align: center;
+}
+
+div.back_home {
+  font-size: 120%;
+  text-align: center;
+}
+
+table {
+  text-align: left;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+input {
+  font-size: 100%;
+  width: 80%;
+}
+
+input.button {
+  border-color: black;
+  background-color: red;
+}
