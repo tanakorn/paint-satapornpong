@@ -84,7 +84,7 @@ def searchByMonth(request, month=0, year=0):
   return render_to_response('search_month.html', {'sell_record_list': sellRecords, 'date': searchDate, 'previous_month': previousMonth, 'next_month': nextMonth}, context_instance=RequestContext(request))
 
 def enterCustomer(request):
-  return render_to_response('enter_customer.html', {})
+  return render_to_response('enter_customer.html', {}, context_instance=RequestContext(request))
 
 def searchByCustomer(request, customer, month=0, year=0):
   if month == 0 or year == 0:
@@ -102,7 +102,7 @@ def searchByCustomer(request, customer, month=0, year=0):
   return render_to_response('search_customer.html', {'customer': customer, 'sell_record_list': sellRecords, 'date': searchDate, 'previous_month': previousMonth, 'next_month': nextMonth}, context_instance=RequestContext(request))
 
 def enterCode(request):
-  return render_to_response('enter_code.html', {})
+  return render_to_response('enter_code.html', {}, context_instance=RequestContext(request))
 
 def searchByCode(request, code, month=0, year=0):
   if month == 0 or year == 0:

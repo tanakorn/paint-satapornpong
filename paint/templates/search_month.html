@@ -2,23 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="th" xml:lang="th">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <style type="text/css">
-    body {
-      font-size: 200%;
-      background-color: #cccccc;
-      text-align: center;
-    }
-    table {
-      margin: auto;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/search/main.css" />
 </head>
 <body>
-<div>
+<div class="back_home"><a href="/">กลับไปหน้าแรก</a></div><br />
+<div class="main">
   ดูเป็น <a href="/search/date/1/{{ date.month }}/{{ date.year }}/">วัน</a> เดือน<br />
   <a href="/search/month/{{ previous_month.month }}/{{ previous_month.year }}/">&lt;&lt; เดือนที่แล้ว</a> <a href="/search/month/{{ next_month.month }}/{{ next_month.year }}/">เดือนต่อไป &gt;&gt;</a>
-</div>
-<a href="/"> กลับไปหน้าแรก </a>
 <table border="1">
   <tr>
     <th>วันที่</th>
@@ -60,5 +51,6 @@
   </tr>
   {% endfor %}
 </table>
+</div>
 </body>
 </html>
