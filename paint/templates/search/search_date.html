@@ -33,8 +33,16 @@
     <td>{{ sell_record.size.value }}</td>
     <td>{{ sell_record.price }}</td>
     <td>{{ sell_record.unit }}</td>
+    {% if sell_record.customer %}
     <td>{{ sell_record.customer }}</td>
+    {% else %}
+    <td />
+    {% endif %}
+    {% if sell_record.note %}
     <td>{{ sell_record.note }}</td>
+    {% else %}
+    <td />
+    {% endif %}
   </tr>
   {% endfor %}
 </table>
