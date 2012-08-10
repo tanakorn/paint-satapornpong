@@ -17,23 +17,23 @@ def addSellRecord(request):
 
 def chooseBrand(request):
   allBrand = Brand.objects.all()
-  return render_to_response('choose_brand.html', {'brand_list': allBrand}, context_instance=RequestContext(request))
+  return render_to_response('sell/choose_brand.html', {'brand_list': allBrand}, context_instance=RequestContext(request))
 
 def chooseProduct(request, brand_id):
   brand = get_object_or_404(Brand, id=brand_id)
   allProduct = brand.product_set.all()
-  return render_to_response('choose_product.html', {'brand_name': brand.name, 'product_list': allProduct, 'brand': brand }, context_instance=RequestContext(request))
+  return render_to_response('sell/choose_product.html', {'brand_name': brand.name, 'product_list': allProduct, 'brand': brand }, context_instance=RequestContext(request))
 
 def chooseFunction(request, product_id):
   product = get_object_or_404(Product, id=product_id)
   allFunction = product.function_set.all()
-  return render_to_response('choose_function.html', {'brand_name': product.brand.name, 'product_name': product.name, 'function_list': allFunction}, context_instance=RequestContext(request))
+  return render_to_response('sell/choose_function.html', {'brand_name': product.brand.name, 'product_name': product.name, 'function_list': allFunction}, context_instance=RequestContext(request))
 
 def enterDetail(request, function_id):
   function = get_object_or_404(Function, id=function_id)
   allSize = function.sizes.all()
   allBase = function.bases.all()
-  return render_to_response('enter_detail.html', {'brand_name': function.product.brand.name, 'product_name': function.product.name, 'function_name': function.name, 'function_id': function_id, 'size_list': allSize, 'base_list': allBase}, context_instance=RequestContext(request))
+  return render_to_response('sell/enter_detail.html', {'brand_name': function.product.brand.name, 'product_name': function.product.name, 'function_name': function.name, 'function_id': function_id, 'size_list': allSize, 'base_list': allBase}, context_instance=RequestContext(request))
 
 def record(request):
   function_id = request.POST['function_id']
@@ -55,7 +55,7 @@ def search(request):
   return HttpResponseRedirect(reverse('paint.views.selectSearch'))
 
 def selectSearch(request):
-  return render_to_response('search_select.html', {}, context_instance=RequestContext(request))
+  return render_to_response('search/search_select.html', {}, context_instance=RequestContext(request))
 
 def searchByDate(request, day=0, month=0, year=0):
   if day == 0 or month == 0 or year == 0:
@@ -66,7 +66,7 @@ def searchByDate(request, day=0, month=0, year=0):
   oneday = datetime.timedelta(1)
   previousDay = searchDate - oneday
   nextDay = searchDate + oneday
-  return render_to_response('search_date.html', {'sell_record_list': sellRecords, 'date': searchDate, 'previous_day': previousDay, 'next_day': nextDay}, context_instance=RequestContext(request))
+  return render_to_response('search/search_date.html', {'sell_record_list': sellRecords, 'date': searchDate, 'previous_day': previousDay, 'next_day': nextDay}, context_instance=RequestContext(request))
 
 def searchByMonth(request, month=0, year=0):
   if month == 0 or year == 0:
@@ -81,10 +81,10 @@ def searchByMonth(request, month=0, year=0):
   nextMonth = {}
   nextMonth['month'] = searchDate.month + 1 if searchDate.month != 12 else 1
   nextMonth['year'] = searchDate.year if searchDate.month != 12 else searchDate.year + 1
-  return render_to_response('search_month.html', {'sell_record_list': sellRecords, 'date': searchDate, 'previous_month': previousMonth, 'next_month': nextMonth}, context_instance=RequestContext(request))
+  return render_to_response('search/search_month.html', {'sell_record_list': sellRecords, 'date': searchDate, 'previous_month': previousMonth, 'next_month': nextMonth}, context_instance=RequestContext(request))
 
 def enterCustomer(request):
-  return render_to_response('enter_customer.html', {}, context_instance=RequestContext(request))
+  return render_to_response('search/enter_customer.html', {}, context_instance=RequestContext(request))
 
 def searchByCustomer(request, customer, month=0, year=0):
   if month == 0 or year == 0:
@@ -99,10 +99,10 @@ def searchByCustomer(request, customer, month=0, year=0):
   nextMonth = {}
   nextMonth['month'] = searchDate.month + 1 if searchDate.month != 12 else 1
   nextMonth['year'] = searchDate.year if searchDate.month != 12 else searchDate.year + 1
-  return render_to_response('search_customer.html', {'customer': customer, 'sell_record_list': sellRecords, 'date': searchDate, 'previous_month': previousMonth, 'next_month': nextMonth}, context_instance=RequestContext(request))
+  return render_to_response('search/search_customer.html', {'customer': customer, 'sell_record_list': sellRecords, 'date': searchDate, 'previous_month': previousMonth, 'next_month': nextMonth}, context_instance=RequestContext(request))
 
 def enterCode(request):
-  return render_to_response('enter_code.html', {}, context_instance=RequestContext(request))
+  return render_to_response('search/enter_code.html', {}, context_instance=RequestContext(request))
 
 def searchByCode(request, code, month=0, year=0):
   if month == 0 or year == 0:
@@ -117,4 +117,4 @@ def searchByCode(request, code, month=0, year=0):
   nextMonth = {}
   nextMonth['month'] = searchDate.month + 1 if searchDate.month != 12 else 1
   nextMonth['year'] = searchDate.year if searchDate.month != 12 else searchDate.year + 1
-  return render_to_response('search_code.html', {'code': code, 'sell_record_list': sellRecords, 'date': searchDate, 'previous_month': previousMonth, 'next_month': nextMonth}, context_instance=RequestContext(request))
+  return render_to_response('search/search_code.html', {'code': code, 'sell_record_list': sellRecords, 'date': searchDate, 'previous_month': previousMonth, 'next_month': nextMonth}, context_instance=RequestContext(request))
