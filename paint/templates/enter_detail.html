@@ -2,52 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="th" xml:lang="th">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <style type="text/css">
-    body {
-      font-size: 400%;
-      background-color: #cccccc;
-      text-align: center;
-    }
-    span.home {
-      font-size: 30%;
-    }
-    table.main {
-      width: 100%;
-      margin: auto;
-      text-align: left;
-    }
-    td.label {
-      width: 25%;
-    }
-    td.input {
-      width: 50%;
-    }
-    td.output {
-      width: 25%;
-    }
-    input {
-      font-size: 100%;
-      width: 80%;
-    }
-    input.button {
-      font-size: 70%;
-      border-color: black;
-      background-color: red;
-      width: 48%;
-    }
-    input.submit {
-      font-size: 100%;
-      border-color: black;
-      background-color: red;
-      width: 40%;
-      margin-left: 30%;
-      margin-right: 30%;
-    }
-    textarea {
-      font-size: 100%;
-      width: 100%;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}template_css/main.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}template_css/sell/enter_detail.css" />
   <script type="text/javascript">
     function changeSize(size_id, size_value) {
       document.getElementById("size_id").value = size_id;
@@ -107,14 +63,15 @@
   </script>
 </head>
 <body>
+  <div class="back_home"><a href="/">กลับไปหน้าแรก</a></div><br />
+  <div class="main">
   <form action="/sell/record/" method="post" onSubmit="return validateForm()">
     {% csrf_token %}
-    <span class="home"><a href="/">กลับไปหน้าแรก</a></span><br />
     {{ brand_name }} {{ product_name }} {{ function_name }}
     <input type="hidden" id="function_id" name="function_id" value="{{ function_id }}" />
     <input type="hidden" id="size_id" name="size_id" value="" />
     <input type="hidden" id="base_id" name="base_id" value="" />
-    <table class="main" border="1">
+    <table class="main">
       <tr>
         <td class="label">ขนาด</td>
         <td class="input">
@@ -162,5 +119,6 @@
     <input class="submit" type="submit" value="บันทึก" />
     <br />
   </form>
+  </div>
 </body>
 </html>

@@ -24,6 +24,7 @@ div.back_home {
 
 table {
   text-align: left;
+  margin: auto;
 }
 
 table, th, td {
@@ -37,5 +38,14 @@ input {
 
 input.button {
   border-color: black;
-  background-color: red;
+  background-color: blue;
+}
+
+input.submit {
+  border-color: black;
+  background-color: blue;
+}
+
+textarea {
+  font-size: 100%;
 }
