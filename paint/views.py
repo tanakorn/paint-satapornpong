@@ -55,7 +55,7 @@ def search(request):
   return HttpResponseRedirect(reverse('paint.views.selectSearch'))
 
 def selectSearch(request):
-  return render_to_response('search_select.html', {})
+  return render_to_response('search_select.html', {}, context_instance=RequestContext(request))
 
 def searchByDate(request, day=0, month=0, year=0):
   if day == 0 or month == 0 or year == 0:

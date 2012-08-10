@@ -2,17 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="th" xml:lang="th">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <style type="text/css">
-    body {
-      font-size: 400%;
-      background-color: #cccccc;
-      text-align: center;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}template_css/main.css" />
 </head>
 <body>
-<a href="/search/date/" >ค้นตามวันที่</a><br />
-<a href="/search/select/customer/" >ค้นตามชื่อลูกค้า</a><br />
-<a href="/search/select/code/" >ค้นตามเบอร์สี</a><br />
+<div class="main">
+  <a href="/search/date/" >ค้นตามวันที่</a><br />
+  <a href="/search/select/customer/" >ค้นตามชื่อลูกค้า</a><br />
+  <a href="/search/select/code/" >ค้นตามเบอร์สี</a><br />
+</div>
 </body>
 </html>
