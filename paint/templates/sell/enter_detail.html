@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="th" xml:lang="th">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/sell/enter_detail.css" />
+  <script type="text/javascript">
+    function changeSize(size_id, size_value) {
+      document.getElementById("size_id").value = size_id;
+      document.getElementById("size_label").innerHTML = size_value;
+    }
+
+    function changeBase(base_id, base_value) {
+      document.getElementById("base_id").value = base_id;
+      document.getElementById("base_label").innerHTML = base_value;
+    }
+
+    function validate(evt) {
+      var theEvent = evt || window.event;
+      var key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode(key);
+      var regex = /[0-9]/;
+      if(!regex.test(key)) {
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+      }
+    }
+
+    function calculate() {
+      unit = document.getElementById("unit").value;
+      price = document.getElementById("price").value;
+      amount_price = unit * price;
+      document.getElementById("amount_price").innerHTML = amount_price;
+    }
+
+    function validateForm() {
+      size_id = document.getElementById("size_id").value;
+      if(size_id == null || size_id == "") {
+        alert("ยังไม่ได้เลือกขนาดสี");
+        return false;
+      }
+      base_id = document.getElementById("base_id").value;
+      if(base_id == null || base_id == "") {
+        alert("ยังไม่ได้เลือกสีเบส");
+        return false;
+      }
+      code = document.getElementById("code").value;
+      if(code == null || code == "") {
+        alert("ยังไม่ได้ใส่เบอร์สี");
+        return false;
+      }
+      unit = document.getElementById("unit").value;
+      if(unit == null || unit == "") {
+        alert("ยังไม่ได้ใส่จำนวน");
+        return false;
+      }
+      price = document.getElementById("price").value;
+      if(price == null || price == "") {
+        alert("ยังไม่ได้ใส่ราคา");
+        return false;
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="back_home"><a href="/">กลับไปหน้าแรก</a></div><br />
+  <div class="main">
+  <form action="/sell/record/" method="post" onSubmit="return validateForm()">
+    {% csrf_token %}
+    {{ brand_name }} {{ product_name }} {{ function_name }}
+    <input type="hidden" id="function_id" name="function_id" value="{{ function_id }}" />
+    <input type="hidden" id="size_id" name="size_id" value="" />
+    <input type="hidden" id="base_id" name="base_id" value="" />
+    <table class="main">
+      <tr>
+        <td class="label">ขนาด</td>
+        <td class="input">
+        {% for size in size_list %}
+          <input class="button" type="button" value="{{ size.value }}" onClick="changeSize({{ size.id }}, '{{ size.value }}')" />
+          {% if forloop.counter|divisibleby:2 %}
+          <br />
+          {% endif %}
+        {% endfor %}
+        </td>
+        <td class="output"> <span id="size_label"> </span> </td>
+      </tr>
+      <tr>
+        <td class="label">เบส</td>
+        <td class="input">
+        {% for base in base_list %}
+          <input class="button" type="button" value="{{ base.name }}" onClick="changeBase({{ base.id }}, '{{ base.name }}')" />
+        {% endfor %}
+        </td>
+        <td class="output"> <span id="base_label"> </span> </td>
+      </tr>
+      <tr>
+        <td class="label"> เบอร์สี </td>
+        <td class="input" colspan="2"> <input type="text" id="code" name="code" /> </td>
+      </tr>
+      <tr>
+        <td class="label"> จำนวน </td>
+        <td class="input"> <input type="text" id="unit" name="unit" onKeyPress="validate(event)" onChange="calculate()" value="1" /> </td>
+        <td class="output" rowspan="2"><span id="amount_price">0</span> บาท</td>
+      </tr>
+      <tr>
+        <td class="label"> ราคา </td>
+        <td class="input"> <input type="text" id="price" name="price" onKeyPress="validate(event)" onChange="calculate()" value="0"/> </td>
+      </tr>
+      <tr>
+        <td class="label"> ชื่อลูกค้า </td>
+        <td class="input" colspan="2"> <input type="text" id="customer" name="customer" /> </td>
+      </tr>
+      <tr>
+        <td class="label"> หมายเหตุ </td>
+        <td class="input" colspan="2"> <textarea id="note" name="note" cols="40" rows="3"></textarea> </td>
+      </tr>
+    </table>
+    <br />
+    <input class="submit" type="submit" value="บันทึก" />
+    <br />
+  </form>
+  </div>
+</body>
+</html>

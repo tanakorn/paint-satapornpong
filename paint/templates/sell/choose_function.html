@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="th" xml:lang="th">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/sell/choose_item.css" />
+</head>
+<body>
+  <div class="back_home"><a href="/">กลับไปหน้าแรก</a></div><br />
+  <div class="main">
+    {{ brand_name }} {{ product_name }}
+    <table>
+    {% for function in function_list %}
+      {% if not forloop.counter|divisibleby:2 %}
+      <tr>
+      {% endif %}
+        <td> 
+          <a href="/sell/detail/{{ function.id }}">
+            {{ function.name }}
+          </a>
+        </td>
+      {% if forloop.counter|divisibleby:2 %}
+      </tr>
+      {% endif %}
+    {% endfor %}
+    {% if not function_list|length|divisibleby:2 %}
+        <td> </td>
+      </tr>
+    {% endif %}
+    </table>
+  </div>
+</body>
+</html>

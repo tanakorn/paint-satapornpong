@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="th" xml:lang="th">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/search/enter_search.css" />
+  <script type="text/javascript">
+    function search() {
+      customer = document.getElementById("customer").value;
+      self.location = "/search/customer/" + customer + "/";
+    }
+  </script>
+</head>
+<body>
+<div class="main">
+  <form>
+    ชื่อลูกค้า <br /><br />
+    <input type="text" id="customer" /><br /><br />
+    <input class="submit" type="button" onClick="search()" value="ค้น" />
+  </form>
+</div>
+</body>
+</html>

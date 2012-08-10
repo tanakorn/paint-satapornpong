@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="th" xml:lang="th">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/main.css" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/search/main.css" />
+</head>
+<body>
+<div class="back_home"><a href="/">กลับไปหน้าแรก</a></div><br />
+<div class="main">
+  วันที่ {{ date }}<br />
+  ดูเป็น <a href="/search/month/{{ date.month }}/{{ date.year }}/">เดือน</a><br />
+  <a href="/search/date/{{ previous_day.day }}/{{ previous_day.month }}/{{ previous_day.year }}/"> &lt;&lt; วันก่อนหน้า</a> <a href="/search/date/{{ next_day.day }}/{{ next_day.month }}/{{ next_day.year }}/">วันต่อไป &gt;&gt;</a>
+<table border="1">
+  <tr>
+    <th>วันที่</th>
+    <th>ผลิตภัณฑ์</th>
+    <th>การใช้งาน</th>
+    <th>เบอร์สี</th>
+    <th>สีเบส</th>
+    <th>ขนาด</th>
+    <th>ราคา</th>
+    <th>จำนวน</th>
+    <th>ชื่อลูกค้า</th>
+    <th>หมายเหตุ</th>
+  </tr>
+  {% for sell_record in sell_record_list %}
+  <tr>
+    <td>{{ sell_record.date }}</td>
+    <td>{{ sell_record.function.product.brand.name }} {{ sell_record.product.name }}</td>
+    <td>{{ sell_record.function.name }}</td>
+    <td>{{ sell_record.code }}</td>
+    <td>{{ sell_record.base.name }}</td>
+    <td>{{ sell_record.size.value }}</td>
+    <td>{{ sell_record.price }}</td>
+    <td>{{ sell_record.unit }}</td>
+    {% if sell_record.customer %}
+    <td>{{ sell_record.customer }}</td>
+    {% else %}
+    <td />
+    {% endif %}
+    {% if sell_record.note %}
+    <td>{{ sell_record.note }}</td>
+    {% else %}
+    <td />
+    {% endif %}
+  </tr>
+  {% endfor %}
+</table>
+</div>
+</body>
+</html>
