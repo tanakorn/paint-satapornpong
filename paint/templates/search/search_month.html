@@ -8,7 +8,8 @@
 <body>
 <div class="back_home"><a href="/">กลับไปหน้าแรก</a></div><br />
 <div class="main">
-  ดูเป็น <a href="/search/date/1/{{ date.month }}/{{ date.year }}/">วัน</a> เดือน<br />
+  เดือน {{ date|date:"M. Y" }}<br />
+  ดูเป็น <a href="/search/date/1/{{ date.month }}/{{ date.year }}/">วัน</a><br />
   <a href="/search/month/{{ previous_month.month }}/{{ previous_month.year }}/">&lt;&lt; เดือนที่แล้ว</a> <a href="/search/month/{{ next_month.month }}/{{ next_month.year }}/">เดือนต่อไป &gt;&gt;</a>
 <table border="1">
   <tr>
