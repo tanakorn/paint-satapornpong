@@ -39,7 +39,7 @@ def record(request):
   function_id = request.POST['function_id']
   size_id = request.POST['size_id']
   base_id = request.POST['base_id']
-  code = request.POST['code']
+  code = request.POST['code'].upper()
   unit = request.POST['unit']
   price = request.POST['price']
   customer = request.POST['customer'] if request.POST['customer'] else None
@@ -109,7 +109,7 @@ def searchByCode(request, code, month=0, year=0):
     searchDate = datetime.date.today()
   else:
     searchDate = datetime.date(int(year), int(month), 1)
-  sellRecords = Sell.objects.filter(code__endswith=code, date__month=searchDate.month, date__year=searchDate.year)
+  sellRecords = Sell.objects.filter(code__endswith=code.upper(), date__month=searchDate.month, date__year=searchDate.year)
   sorted(sellRecords, key=lambda record: record.date)
   previousMonth = {}
   previousMonth['month'] = searchDate.month - 1 if searchDate.month != 1 else 12
