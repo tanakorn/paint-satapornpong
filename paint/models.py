@@ -32,7 +32,7 @@ class Function(models.Model):
   bases = models.ManyToManyField(Base)
 
   def __unicode__(self):
-    return self.name
+    return self.product.brand.name + ' ' + self.product.name + ' ' + self.name
 
 class Sell(models.Model):
   function = models.ForeignKey(Function)
